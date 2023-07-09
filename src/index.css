@@ -1,0 +1,193 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  /* dark mode */
+  --very-Dark-Blue: hsl(235, 21%, 11%);
+  --very-Dark-Desaturated-Blue: hsl(235, 24%, 19%);
+  --light-Grayish-Blue: hsl(234, 39%, 85%);
+  --light-Grayish-Blue-hover: hsl(236, 33%, 92%);
+  --dark-Grayish-Blue: hsl(234, 11%, 52%);
+  --very-Dark-Grayish-Blue-1: hsl(233, 14%, 35%);
+  --very-Dark-Grayish-Blue-2: hsl(237, 14%, 26%);
+
+  /* lightmode */
+  --Very-Light-Gray: hsl(0, 0%, 98%);
+  --Very-Light-Grayish-Blue: hsl(236, 33%, 92%);
+  --Light-Grayish-Blue: hsl(233, 11%, 84%);
+  --Dark-Grayish-Blue: hsl(236, 9%, 61%);
+  --Very-Dark-Grayish-Blue: hsl(235, 19%, 35%);
+}
+.main-container {
+  background-color: var(--very-Dark-Blue);
+  height: 100%;
+  width: 100%;
+  color: white;
+  font-family: "Josefin Sans", sans-serif;
+  background-image: url("./assets/images/bg-desktop-dark.jpg");
+  background-repeat: no-repeat;
+  background-size: 100vw 35vh;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.container {
+  width: 700px;
+  max-height: 100%;
+  margin: 140px 0 100px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 30px 10px;
+  align-items: center;
+}
+header h1 {
+  letter-spacing: 13px;
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+header img {
+  width: 30px;
+  height: 30px;
+}
+.todo-card {
+  max-width: 100%;
+  background-color: var(--very-Dark-Desaturated-Blue);
+  height: 60px;
+  min-height: 60px;
+  display: flex;
+  margin: 25px 30px 10px;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 6px;
+  position: relative;
+}
+
+
+.circle {
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--very-Dark-Grayish-Blue-2);
+  border-radius: 50%;
+  margin: 0 20px 0 10px;
+}
+
+.todo-card input {
+  background-color: var(--very-Dark-Desaturated-Blue);
+  caret-color: hsl(220, 98%, 61%);
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  color: var(--light-Grayish-Blue);
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 400;
+}
+::placeholder {
+  color: var(--very-Dark-Grayish-Blue-1);
+  font-weight: 400;
+}
+
+.todo-item {
+  margin: 0 30px 0;
+  border-bottom: 1px solid var(--very-Dark-Grayish-Blue-1);
+  border-radius: 0;
+}
+.todo-item:hover{
+  cursor: pointer;
+}
+.normal-text{
+  color: var(--light-Grayish-Blue);
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+.todo-item button{
+  cursor: pointer;
+  background-color: var(--very-Dark-Desaturated-Blue);
+}
+
+.first-item {
+  margin: 25px 30px 0;
+  border-radius: 6px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.card-footer{
+  margin: 0 30px 0;
+  border-radius: 0 0 6px 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.item-filter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.btn{
+  background-color: var(--very-Dark-Desaturated-Blue);
+  color: var(--very-Dark-Grayish-Blue-1);
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.item-count{
+  background-color: var(--very-Dark-Desaturated-Blue);
+  color: var(--very-Dark-Grayish-Blue-1);
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+.filter-btn{
+  margin: 0 15px;  
+}
+.hover-on-btn:hover{
+  color: var(--light-Grayish-Blue);
+}
+.active-btn{
+  color: hsl(220, 98%, 61%);
+}
+.clear-button:hover{
+  color: var(--light-Grayish-Blue);
+}
+.completed{
+  background-image: linear-gradient(hsl(192, 100%, 67%) ,hsl(280, 87%, 65%));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.completed-text{
+  text-decoration: line-through;
+  color: var(--very-Dark-Grayish-Blue-1);
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.delete-task{
+  position: absolute;
+  right: 5%;
+  border: none;
+  outline: none;
+}
