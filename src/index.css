@@ -24,12 +24,12 @@
   --Very-Dark-Grayish-Blue: hsl(235, 19%, 35%);
 }
 .main-container {
-  background-color: var(--very-Dark-Blue);
+  background-color: #000000;
   height: 100%;
   width: 100%;
   color: white;
   font-family: "Josefin Sans", sans-serif;
-  background-image: url("./assets/images/bg-desktop-dark.jpg");
+  background-image: url("./assets/images/newBackground.jpg");
   background-repeat: no-repeat;
   background-size: 100vw 35vh;
   display: flex;
@@ -62,7 +62,8 @@ header img {
 }
 .todo-card {
   max-width: 100%;
-  background-color: var(--very-Dark-Desaturated-Blue);
+  /* background-color: var(--very-Dark-Desaturated-Blue); */
+  background-color: #121212;
   height: 60px;
   min-height: 60px;
   display: flex;
@@ -82,8 +83,10 @@ header img {
   margin: 0 20px 0 10px;
 }
 
+
 .todo-card input {
-  background-color: var(--very-Dark-Desaturated-Blue);
+  /* background-color: var(--very-Dark-Desaturated-Blue); */
+  background-color: #121212;
   caret-color: hsl(220, 98%, 61%);
   width: 100%;
   height: 100%;
@@ -104,17 +107,17 @@ header img {
   border-bottom: 1px solid var(--very-Dark-Grayish-Blue-1);
   border-radius: 0;
 }
-.todo-item:hover{
-  cursor: pointer;
-}
+
 .normal-text{
   color: var(--light-Grayish-Blue);
   font-size: 1.2rem;
   font-weight: 400;
+  cursor: pointer;
 }
 .todo-item button{
   cursor: pointer;
-  background-color: var(--very-Dark-Desaturated-Blue);
+  /* background-color: var(--very-Dark-Desaturated-Blue); */
+  background-color: #121212;
 }
 
 .first-item {
@@ -141,7 +144,8 @@ header img {
 }
 
 .btn{
-  background-color: var(--very-Dark-Desaturated-Blue);
+  /* background-color: var(--very-Dark-Desaturated-Blue); */
+  background-color: #121212;
   color: var(--very-Dark-Grayish-Blue-1);
   font-family: "Josefin Sans", sans-serif;
   font-weight: 600;
@@ -153,7 +157,8 @@ header img {
 }
 
 .item-count{
-  background-color: var(--very-Dark-Desaturated-Blue);
+  /* background-color: var(--very-Dark-Desaturated-Blue); */
+  background-color: #121212;
   color: var(--very-Dark-Grayish-Blue-1);
   font-family: "Josefin Sans", sans-serif;
   font-weight: 600;
@@ -183,6 +188,7 @@ header img {
   color: var(--very-Dark-Grayish-Blue-1);
   font-size: 1.2rem;
   font-weight: 400;
+  cursor: pointer;
 }
 
 .delete-task{

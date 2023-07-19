@@ -6,6 +6,7 @@ const App = () => {
   return (
     <div className='main-container'>
       <MainList />
+      
     </div>
 
   );
