@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from "react";
 import check from "./assets/images/icon-check.svg";
 import cross from "./assets/images/icon-cross.svg";
 import { useState } from "react";
-
+import { MdDeleteForever } from "react-icons/Md";
+import { IconContext } from "react-icons";
 const TodoItem = ({ item, index, markComplete, deleteItem }) => {
   const [isShown, setIsShown] = useState(false);
   return (
@@ -19,24 +20,34 @@ const TodoItem = ({ item, index, markComplete, deleteItem }) => {
       }}
     >
       <button
-        className={item.status === true ? "circle completed" : "circle"}
+        className={item.isDone === true ? "circle completed" : "circle"}
         onClick={() => markComplete(item.id)}
       >
-        {item.status === true && <img src={check} alt="" />}
+        {item.isDone === true && <img src={check} alt="" />}
       </button>
       <p
-        className={item.status === true ? "completed-text" : "normal-text"}
+        className={item.isDone === true ? "completed-text" : "normal-text"}
         onClick={() => markComplete(item.id)}
       >
-        {item.desc}
+        {item.title}
       </p>
       {isShown && (
         <button className="delete-task" onClick={() => deleteItem(item.id)}>
-          <img src={cross} alt="" />
+          {/* <img src={cross} alt="" /> */}
+          <IconContext.Provider
+            value={{
+              color: "hsl(237, 14%, 26%)",
+              className: "global-class-name",
+              size: "1.6rem",
+            }}
+          >
+            <MdDeleteForever />
+          </IconContext.Provider>
+          ;
         </button>
       )}
     </div>
   );
 };
 
-export default TodoItem
+export default TodoItem;
