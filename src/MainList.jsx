@@ -5,10 +5,12 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import fetchData from "./utils";
-// import { authToken } from "./Pages/Login";
 import { TbLogout } from "react-icons/Tb";
 import { BiSolidPaperPlane } from "react-icons/Bi";
 import { redirect, useNavigate } from "react-router-dom";
+import CircularProgress from "@mui/material/CircularProgress";
+import LinearProgress from "@mui/material/LinearProgress";
+import Box from "@mui/material/Box";
 
 const MainList = () => {
   const navigate = useNavigate();
@@ -18,7 +20,6 @@ const MainList = () => {
   const [itemArray, setItemArray] = useState([]);
   const [task, setTask] = useState("");
   const [activeState, setActiveState] = useState("all");
-
   const getTask = (e) => {
     setTask(e.target.value);
   };
@@ -49,52 +50,56 @@ const MainList = () => {
         { title: taskItem },
         { headers: { Authorization: `Beare ${localStorage.getItem("token")}` } }
       ),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["tasks"] });
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["tasks"] });
       toast.success("Item Added Succesfully!");
       setTask("");
+      setActiveState("all");
     },
   });
 
   //to update the tasks status
-  const { mutate: updateTasks } = useMutation({
-    mutationFn: (id, status) =>
-      fetchData.patch(`/update/${id}`, null, {
-        headers: { Authorization: `Beare ${localStorage.getItem("token")}` },
-      }),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["tasks"] });
-    },
-    onError: (error) => {
-      console.log(error);
-    },
-  });
+  // const { mutate: updateTasks, isLoading: isLoadingUpdate } = useMutation({
+  //   mutationFn: (id, status) =>
+  //     fetchData.patch(`/update/${id}`, null, {
+  //       headers: { Authorization: `Beare ${localStorage.getItem("token")}` },
+  //     }),
+  //   onSuccess: async () => {
+  //     await queryClient.invalidateQueries({ queryKey: ["tasks"] });
+  //   },
+  //   onError: (error) => {
+  //     console.log(error);
+  //   },
+  // });
 
   //to delete the tasks
-  const { mutate: deleteTasks } = useMutation({
+  const { mutate: deleteTasks, isLoading: isLoadingDelete } = useMutation({
     mutationFn: (id) =>
-      fetchData.delete(`/delete/${id}`,{
+      fetchData.delete(`/delete/${id}`, {
         headers: { Authorization: `Beare ${localStorage.getItem("token")}` },
       }),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["tasks"] });
       toast.success("Item deleted!");
+      setActiveState("all")
     },
     onError: (error) => {
       console.log(error);
     },
   });
   //to delete completed tasks
-  const { mutate: deleteCompletedTasks } = useMutation({
-    mutationFn: () =>
-      fetchData.delete("/deleteCompleted",{
-        headers: { Authorization: `Beare ${localStorage.getItem("token")}` },
-      }),
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ["tasks"] });
-      toast.success("Completed items cleared!");
-    },
-  });
+  const { mutate: deleteCompletedTasks, isLoading: isLoadingDeleteCompleted } =
+    useMutation({
+      mutationFn: () =>
+        fetchData.delete("/deleteCompleted", {
+          headers: { Authorization: `Beare ${localStorage.getItem("token")}` },
+        }),
+      onSuccess: async () => {
+        await queryClient.invalidateQueries({ queryKey: ["tasks"] });
+        toast.success("Completed items cleared!");
+        setActiveState("all");
+      },
+    });
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && task !== "") {
@@ -104,16 +109,16 @@ const MainList = () => {
     }
   };
 
-  const markComplete = (id) => {
-    updateTasks(id);
-  };
-  const handleClick = ()=>{
+  // const markComplete = (id) => {
+  //   updateTasks(id);
+  // };
+  const handleClick = () => {
     if (task !== "") {
       postItem(task);
     } else if (task === "") {
       toast.error("Please enter a task!");
     }
-  }
+  };
 
   const changeDisplay = (state) => {
     switch (state) {
@@ -161,6 +166,12 @@ const MainList = () => {
   };
   return (
     <div className="main-container">
+      {(isLoadingDelete || isLoadingDeleteCompleted || isLoadingGet) && (
+        <Box sx={{ width: "100%", position: "absolute", top: 0, left: 0 }}>
+          <LinearProgress />
+        </Box>
+      )}
+
       <div className="container">
         <header>
           <h1>TODO</h1>
@@ -170,21 +181,30 @@ const MainList = () => {
           {/* <div className="circle"></div> */}
           <input
             type="text"
-            placeholder={`👋 Hello ${localStorage?.getItem("name")?.[0]?.toUpperCase()+localStorage?.getItem("name")?.slice(1)}, What to do Today?`}
+            placeholder={`👋 Hello ${
+              localStorage?.getItem("name")?.[0]?.toUpperCase() +
+              localStorage?.getItem("name")?.slice(1)
+            }, What to do Today?`}
             onChange={getTask}
             onKeyDown={handleKeyDown}
             value={task}
             disabled={isLoadingPost}
           />
-          <button className="go-btn" onClick={handleClick}>
-            <BiSolidPaperPlane color="hsl(220, 98%, 61%)" />
-          </button>
+          {isLoadingPost ? (
+            <Box sx={{ display: "flex" }}>
+              <CircularProgress size={25} sx={{ marginRight: "10px" }} />
+            </Box>
+          ) : (
+            <button className="go-btn" onClick={handleClick}>
+              <BiSolidPaperPlane color="hsl(220, 98%, 61%)" />
+            </button>
+          )}
         </div>
 
         <TodoCard
           itemArray={itemArray}
-          markComplete={markComplete}
           deleteItem={deleteItem}
+          setActiveState={setActiveState}
         />
 
         <div className="todo-card card-footer">

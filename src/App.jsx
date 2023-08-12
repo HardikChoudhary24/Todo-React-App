@@ -8,9 +8,8 @@ import Login, { action as loginAction } from "./Pages/Login";
 import PrivateRoute from "./PrivateRoute";
 const router = createBrowserRouter([
   {
-    path: "/Todo-React-App/signup",
-    element: <Signup />,
-    action: signupAction,
+    path: "/Todo-React-App/:username",
+    element: <PrivateRoute />,
   },
   {
     path: "/Todo-React-App/",
@@ -18,8 +17,9 @@ const router = createBrowserRouter([
     action: loginAction,
   },
   {
-    path: "/Todo-React-App/:username",
-    element: <PrivateRoute />,
+    path: "/Todo-React-App/signup",
+    element: <Signup />,
+    action: signupAction,
   },
 ]);
 const App = () => {

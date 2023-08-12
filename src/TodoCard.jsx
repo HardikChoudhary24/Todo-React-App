@@ -1,7 +1,7 @@
 import  TodoItem  from './TodoItem';
 import React, { useState } from 'react'
 
-const TodoCard = ({ itemArray ,markComplete ,deleteItem}) => {  
+const TodoCard = ({ itemArray, deleteItem,setActiveState }) => {
   return (
     <>
       {itemArray.map((item, index) => {
@@ -10,8 +10,8 @@ const TodoCard = ({ itemArray ,markComplete ,deleteItem}) => {
             key={index}
             item={item}
             index={index}
-            markComplete={markComplete}
             deleteItem={deleteItem}
+            setActiveState={setActiveState}
           />
         );
       })}
@@ -20,3 +20,5 @@ const TodoCard = ({ itemArray ,markComplete ,deleteItem}) => {
 };
 
 export default TodoCard
+// markComplete
+//isLoadingUpdate

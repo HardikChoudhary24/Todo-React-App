@@ -9,57 +9,56 @@ export const action = async ({ request }) => {
   const data = Object.fromEntries(formData);
   try {
     const res = await fetchData.post("/signup", data);
-    // toast.success(res.data.msg);
-    // toast.info("Redirecting to login !");
     return redirect("/Todo-React-App/");
   } catch (error) {
-    toast.error(error?.response?.data?.msg);
+    toast.error("Email already in use!");
   }
   return null;
 };
+
 const Signup = () => {
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
   return (
-    <div className="auth-container">
-      <div className="layer"></div>
-      <Form className="login-cont" method="POST">
-        <div className="head-container">
-          <h2 className="signup-head">SIGN UP</h2>
-        </div>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          placeholder="Name"
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          id="email"
-          placeholder="Email"
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Password"
-          required
-        />
+    <div className="box">
+      <div className="mainlogin">
+        <Form className="login-box" method="POST">
+          <h2 className="signup-box">Sign Up</h2>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Name"
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+            required
+          />
 
-        <button className="sign-in" disabled={isSubmitting}>
-          Sign in
-        </button>
-        <p className="redirect-link">
-          Do you have a account?{" "}
-          <Link to="/Todo-React-App/" className="link">
-            {" "}
-            Log in
-          </Link>
-        </p>
-      </Form>
+          <button className="sign-in-btn" disabled={isSubmitting}>
+            Sign up
+          </button>
+          <p className="redirect-link-p">
+            Already have an account ?
+            <Link to="/Todo-React-App/" className="link">
+              {" "}
+              Login
+            </Link>
+          </p>
+        </Form>
+      </div>
+      <div className="background-box"></div>
       <ToastContainer
         position="top-center"
         autoClose={2000}
