@@ -1,6 +1,6 @@
 # Todo React App
 
-This is a MERN Stack Todo app. Please note that the backend for this app is not always on, and the demo might not have full functionality at all times.
+This is a MERN Stack Todo app. Please note that the backend for this app has not been deployed yet, and the demo might experience crashes and might not have full functionality at all times.
 
 
 ## Demo
