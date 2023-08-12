@@ -18,7 +18,7 @@ Check out the [demo](https://hardikchoudhary24.github.io/Todo-React-App/) of the
 
 Follow these instructions to get a copy of the project up and running on your local machine:
 
-1. Clone this repository: `git clone https://github.com/hardikchoudhary24/Todo-React-App.git`
+1. Clone this repository: `git clone https://github.com/Hardikchoudhary24/Todo-React-App.git`
 2. Navigate to the project directory: `cd Todo-React-App`
 3. Install dependencies: `npm install`
 4. Start the development server: `npm run dev`
